@@ -5,10 +5,30 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/test")
+@RequestMapping("/")
 public class GiauController {
     @GetMapping("")
-    public String show(){
+    public String show() {
         return "index";
+    }
+
+    @GetMapping("/product")
+    public String product() {
+        return "products";
+    }
+
+    @GetMapping("/contact")
+    public String contact() {
+        return "contact";
+    }
+
+    @GetMapping("/faq")
+    public String faq() {
+        return "faq";
+    }
+
+    @GetMapping("/about")
+    public String about() {
+        return "about";
     }
 }
