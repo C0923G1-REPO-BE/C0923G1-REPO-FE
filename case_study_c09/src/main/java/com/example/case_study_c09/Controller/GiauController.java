@@ -31,4 +31,8 @@ public class GiauController {
     public String about() {
         return "about";
     }
+    @GetMapping("/book")
+    public String ooo(){
+        return "home-admin";
+    }
 }

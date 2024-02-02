@@ -19,7 +19,6 @@ public class Author {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String describeAuthor;
     private boolean isDelete;
 
     @OneToMany(mappedBy = "author")

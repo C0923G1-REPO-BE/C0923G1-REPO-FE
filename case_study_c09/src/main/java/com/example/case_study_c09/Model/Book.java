@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -21,6 +22,7 @@ public class Book {
     private String nameBook;
     private Double price;
     private Integer quantity;
+    private LocalDate date = LocalDate.now();
     private String image;
     private String describeBook;
     private boolean isDelete;

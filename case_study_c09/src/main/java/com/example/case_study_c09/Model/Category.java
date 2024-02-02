@@ -19,7 +19,6 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
-    private String describeCategory;
     private boolean isDelete;
 
     @OneToMany(mappedBy = "category")

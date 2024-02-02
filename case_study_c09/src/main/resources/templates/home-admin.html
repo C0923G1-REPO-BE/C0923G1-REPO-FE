@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/slick.css"/>
+
+    <link href="/css/tooplate-little-fashion.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="">
+    <header th:replace="/layout-top::header" class="header">
+    </header>
+</div>
+<section class="section-padding">
+<div class="row">
+    <div class="col-2">
+        <aside class="sidebar">
+            <header th:replace="/layout-admin::homeAdmin">
+            </header>
+        </aside>
+    </div>
+    <div class="col-10">
+        <main class="main-content">
+            <h2 class="h2">Danh sách hướng dẫn viên</h2>
+
+
+                    <div class="d-flex align-items-center" style="margin-bottom: 40px">
+                        <form class="form-inline" th:action="@{/tourGuide/search}" method="post">
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="name-search" placeholder="Nhập HDV cần tìm">
+                                <button type="submit" class="btn btn-outline-primary">Search</button>
+                            </div>
+                        </form>
+                    </div>
+                    <table class="table table-striped table-hover">
+                        <tr style="background-color: #f9f9f9">
+                            <th>STT</th>
+                            <th>Tên</th>
+                            <th>Ngày sinh</th>
+                            <th>SĐT</th>
+                            <th>Email</th>
+                            <th>Sửa</th>
+                            <th>Xoá</th>
+                        </tr>
+                        <tr class="align-middle" th:each="t,lool:${tourGuide}">
+                            <td th:text="${lool.count}"></td>
+                            <td th:text="${t.name}"></td>
+                            <td th:text="${t.date}"></td>
+                            <td th:text="${t.phoneGuild}"></td>
+                            <td th:text="${t.emailGuild}"></td>
+                            <td>
+                                <button type="button" class="btn custom-btn-1">
+                                    <a th:href="@{/tourGuide/edit/{id}(id=${t.id})}" style="text-decoration: none">Sửa</a>
+                                </button>
+                            </td>
+                            <td>
+                                <button type="button" class="btn custom-btn"
+                                        th:attr="data-tourGuide-id=${t.id} , data-tourGuide-name=${t.name} "
+                                        onclick="infoDelete(this.getAttribute('data-tourGuide-id'), this.getAttribute('data-tourGuide-name'))"
+                                        data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Xoá
+                                </button>
+                            </td>
+                        </tr>
+                    </table>
+<!--                    <div class="pagination-wrapper">-->
+<!--                        <nav aria-label="..." th:if="${tourGuide.getTotalPages() > 1}">-->
+<!--                            <ul class="pagination pagination-circle pagination-centered">-->
+<!--                                <li class="page-item" th:if="${tourGuide.hasPrevious()}">-->
+<!--                                    <a class="page-link" th:href="@{/tourGuide(page = ${tourGuide.number - 1})}">Previous</a>-->
+<!--                                </li>-->
+<!--                                <div th:each="item, loop : ${#numbers.sequence(1, tourGuide.totalPages )}">-->
+<!--                                    <div th:if="${tourGuide.number + 1 == item}">-->
+<!--                                        <li class="page-item active" aria-current="page">-->
+<!--                                            <a class="page-link" th:href="@{/tourGuide(page=${item - 1})}" th:text="${item}"><span-->
+<!--                                                    class="visually-hidden">(current)</span></a>-->
+<!--                                        </li>-->
+<!--                                    </div>-->
+<!--                                    <div th:unless="${tourGuide.number + 1 == item}">-->
+<!--                                        <li class="page-item"><a class="page-link" th:href="@{/tourGuide(page=${item - 1})}"-->
+<!--                                                                 th:text="${item}"></a></li>-->
+<!--                                    </div>-->
+
+<!--                                </div>-->
+<!--                                <li class="page-item" th:if="${tourGuide.hasNext()}">-->
+<!--                                    <a class="page-link" th:href="@{/tourGuide(page = ${tourGuide.number + 1})}">Next</a>-->
+<!--                                </li>-->
+<!--                            </ul>-->
+<!--                        </nav>-->
+<!--                    </div>-->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <form th:action="@{tourGuide/delete}" method="post">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <input hidden="hidden" id="id" name="id">
+                                        <span>Bạn có muốm xoá </span>
+                                        <span id="delName"></span>
+                                        <span> không?</span>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                                        <button type="submit" class="btn btn-primary">Xoá</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+        </main>
+    </div>
+</div>
+</section>
+<footer th:replace="/layout-top::footer" class="footer">
+</footer>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/Headroom.js"></script>
+<script src="/js/jQuery.headroom.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/custom.js"></script>
+</html>
