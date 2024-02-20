@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Products</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/slick.css"/>
+
+    <link href="/css/tooplate-little-fashion.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/input-numspin.min.css"/>
+</head>
+
+<body>
+
+<header th:replace="/layout-top::header" class="header">
+</header>
+
+<!--<header class="site-header section-padding d-flex justify-content-center align-items-center">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+
+<!--            <div class="col-lg-10 col-12">-->
+<!--                <h1>-->
+<!--                    <span class="d-block text-primary">Lựa chọn</span>-->
+<!--                    <span class="d-block text-dark">những cuốn sách yêu thích</span>-->
+<!--                </h1>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</header>-->
+
+<section class="products section-padding">
+    <div class="container">
+        <div class="row">
+
+
+            <!--            sp chinh-->
+            <div class="col-12">
+                <h3 class="mb-5">Đặt Hàng thành công</h3>
+                <a th:href="@{/products}">Tiếp tục mua hàng</a>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>
+
+
+<header th:replace="/layout-top::footer" class="footer">
+</header>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/Headroom.js"></script>
+<script src="/js/jQuery.headroom.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/custom.js"></script>
+
+<script src="js/input-numspin.min.js"></script>
+
+</body>
+</html>

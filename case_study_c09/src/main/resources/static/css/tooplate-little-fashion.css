@@ -130,6 +130,10 @@ a:hover {
 .text-primary {
   color: var(--primary-color) !important;
 }
+.text-dark{
+  background-color: var(--primary-color);
+  color: white !important;
+}
 
 ::selection {
   background: var(--primary-color);
@@ -480,10 +484,14 @@ strong {
   SITE HEADER              
 -----------------------------------------*/
 .site-header {
-  background-color: var(--section-bg-color);
+  background-image: url("https://viettranslation.com.vn/images/nhung-quyen-sach-hay-nhat-ve-dich-thuat.jpg");
   position: relative;
   overflow: hidden;
   margin-top: 86px;
+  /*opacity: 0.6;*/
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .site-header.section-padding {
@@ -1177,6 +1185,10 @@ button:focus:not(:focus-visible) {
 
   .full-image-img {
     bottom: 0;
+  }
+  .active{
+    height: 15px !important;
+
   }
 }
 

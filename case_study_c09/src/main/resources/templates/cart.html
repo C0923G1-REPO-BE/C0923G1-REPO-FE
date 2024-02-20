@@ -1,0 +1,225 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Products</title>
+
+    <!-- CSS FILES -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/slick.css"/>
+
+    <link href="/css/tooplate-little-fashion.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="/css/input-numspin.min.css"/>
+</head>
+
+<body>
+
+<header th:replace="/layout-top::header" class="header">
+</header>
+
+<!--<header class="site-header section-padding d-flex justify-content-center align-items-center">-->
+<!--    <div class="container">-->
+<!--        <div class="row">-->
+
+<!--            <div class="col-lg-10 col-12">-->
+<!--                <h1>-->
+<!--                    <span class="d-block text-primary">Lựa chọn</span>-->
+<!--                    <span class="d-block text-dark">những cuốn sách yêu thích</span>-->
+<!--                </h1>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</header>-->
+
+<section class="products section-padding">
+    <div class="container">
+        <div class="row">
+
+
+            <!--            sp chinh-->
+            <div class="col-12">
+                <h2 class="mb-5">Giỏ Hàng</h2>
+            </div>
+
+
+            <form th:action="@{/cart/save}" method="post">
+
+                <div class="row">
+
+                    <div class="col-lg-8 col-8 mb-3">
+                        <div class="col-lg-12 col-12 shadow p-3 mb-5 bg-body-tertiary rounded border d-flex qua-book-qua"
+                             th:each="book: ${cartMap.keySet()}"
+                             th:attr="data-bookid=${book.id}, data-quan=${cartMap.get(book)}, data-price=${book.price}">
+                            <div class="col-3">
+                                <a th:href="@{/cart/delete/{id}(id = ${book.id})}" class="btn-danger btn">X</a>
+                                <br><img class="mt-2" th:src="${book.image}" style="width: 110px; height: 140px"></div>
+                            <div class="col-9">
+                                <p th:text="'Tên sách: ' + ${book.nameBook}"></p>
+                                <p th:text="'Giá: ' + ${book.price}"></p>
+                                <p th:text="'Mô tả: ' + ${book.describeBook}"></p>
+                                <!--                        <p th:text="'Số lượng: ' + ${cartMap.get(book)}"></p>-->
+                                <p>Số lượng:</p>
+                                <!--                                <input type="hidden" th:value="${book.id}" class="id-book-id">-->
+                                <p style="width: 20%" onclick="updateQuantity()"><input type="number"
+                                                                                        th:name="${book.id}"
+                                                                                        th:id="${book.id}"
+                                                                                        class="form-control"
+                                                                                        data-numspin
+                                                                                        numspin-input-scheme="flat"
+                                                                                        step="1"
+                                                                                        min="1"
+                                                                                        th:max="${book.quantity}"
+                                                                                        th:value="${cartMap.get(book)}"
+                                                                                        onchange="updateQuantity()">
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-4 col-4">Địa chỉ:&nbsp
+                        <input type="text" name="address" required><br><br>
+                        <p>Tổng giá tiền: <span id="total"></span></p>
+                        <button onclick="doOrder()" type="submit" class="btn btn-warning">Đặt hàng</button>
+                    </div>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</section>
+
+
+<header th:replace="/layout-top::footer" class="footer">
+</header>
+
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/Headroom.js"></script>
+<script src="/js/jQuery.headroom.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/custom.js"></script>
+
+<script src="js/input-numspin.min.js"></script>
+
+<script>
+    function doOrder() {
+        let bookElement = document.querySelectorAll(".qua-book-qua");
+        let bookData = [];
+        let address = document.querySelector('input[name = "address"]').value;
+        console.log(address);
+        bookElement.forEach(function (bookElement) {
+            let bookId = bookElement.getAttribute("data-bookid");
+            let bookQuan = +document.getElementById(bookId).value;
+            bookData.push({idBook: bookId, value: bookQuan});
+        });
+
+        bookData.push({idBook: "address", value: address});
+        //Gửi Data
+        fetch('/api/cart/save', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookData)
+        })
+
+            .then(data => console.log(bookData))
+            .catch(error => console.error('Error:', error));
+
+    }
+
+    function updateQuantity() {
+        let bookElement = document.querySelectorAll(".qua-book-qua");
+        let bookData = [];
+
+        bookElement.forEach(function (bookElement) {
+            let bookId = bookElement.getAttribute("data-bookid");
+            let bookQuan = +document.getElementById(bookId).value;
+            bookData.push({idBook: bookId, value: bookQuan});
+        });
+
+        //Gửi Data
+        fetch('/api/cart/update-cart', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(bookData)
+        })
+
+            .then(data => console.log(bookData))
+            .catch(error => console.error('Error:', error));
+
+        calculateCost();
+
+    }
+
+
+    function calculateCost(){
+        let bookElement = document.querySelectorAll(".qua-book-qua");
+        let bookData = [];
+        let sum = 0;
+
+        bookElement.forEach(function (bookElement) {
+            let bookId = bookElement.getAttribute("data-bookid");
+            let bookPrice = bookElement.getAttribute("data-price");
+            let bookQuan = +document.getElementById(bookId).value;
+            bookData.push({idBook: bookId, price: bookPrice, quantity: bookQuan});
+        });
+
+        for (let i = 0; i < bookData.length; i++) {
+            sum += bookData[i].price * bookData[i].quantity;
+        }
+
+        document.getElementById("total").innerText = formatCurrency(sum);
+    }
+
+    function formatCurrency(number) {
+        // Chuyển đổi số sang chuỗi và đảm bảo là kiểu số nguyên
+        var strNumber = parseInt(number).toString();
+
+        // Tạo một biến lưu trữ kết quả
+        var result = '';
+
+        // Lặp qua từng ký tự của chuỗi số theo thứ tự ngược lại
+        for (var i = strNumber.length - 1, count = 0; i >= 0; i--, count++) {
+            // Nếu đã đến hàng nghìn và không phải là ký tự đầu tiên
+            if (count % 3 === 0 && count !== 0) {
+                // Thêm dấu chấm phân cách hàng nghìn vào trước ký tự hiện tại
+                result = '.' + result;
+            }
+            // Thêm ký tự hiện tại vào đầu kết quả
+            result = strNumber[i] + result;
+        }
+
+        // Thêm ký tự "VNĐ" vào cuối kết quả
+        result += ' VNĐ';
+
+        // Trả về chuỗi kết quả đã được định dạng
+        return result;
+    }
+
+    //load lần đầu
+    document.addEventListener("DOMContentLoaded", function (){
+        calculateCost();
+    });
+
+</script>
+</body>
+</html>

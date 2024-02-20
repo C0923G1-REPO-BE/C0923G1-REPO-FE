@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Set;
 
@@ -24,8 +25,8 @@ public class Order {
     private String address;
     private String phone;
     private String email;
-    private LocalDateTime bookingDate;
-    private LocalDateTime deliveryDate;
+    private LocalDate bookingDate;
+    private LocalDate deliveryDate;
     private String status;
     private Integer paymentCode;
     private boolean isDelete;
@@ -37,6 +38,16 @@ public class Order {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    @OneToOne(mappedBy = "orders")
+    @ManyToOne
+    @JoinColumn(name = "id_payment")
     private Payment payment;
+
+
+    public Long totalPayment(){
+        long paymentOrder = 0;
+        for (OrderDetails orderDetail:orderDetails){
+            paymentOrder += orderDetail.getQuantity() * orderDetail.getPrice();
+        }
+        return paymentOrder;
+    }
 }

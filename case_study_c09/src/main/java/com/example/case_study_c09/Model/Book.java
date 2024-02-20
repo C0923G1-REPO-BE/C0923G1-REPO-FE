@@ -20,7 +20,7 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nameBook;
-    private Double price;
+    private Integer price;
     private Integer quantity;
     private LocalDate date = LocalDate.now();
     private String image;
