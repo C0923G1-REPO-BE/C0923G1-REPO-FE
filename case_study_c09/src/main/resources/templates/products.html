@@ -181,7 +181,7 @@
                             <p class="product-p">Package design</p>
                         </div>
 
-                        <small class="product-price text-muted ms-auto">$100</small>
+                        <small class="product-price text-muted ms-auto"></small>
                     </div>
                 </div>
             </div>
@@ -209,6 +209,59 @@
                         <small class="product-price text-muted ms-auto">$200</small>
                     </div>
                 </div>
+            </div>
+
+<!--            sp chinh-->
+            <div class="col-12">
+                <h2 class="mb-5">Tất cả sản phẩm</h2>
+            </div>
+
+            <div class="col-lg-4 col-12 mb-3 book999" th:each="book, loop: ${bookList}" th:attr="data-bookid=${book.id}, data-price=${book.price}">
+                <div class="product-thumb">
+                    <a th:href="@{/products/detail/{id}(id = ${book.id})}">
+                        <img th:src="${book.image}" class="img-fluid product-image"
+                             alt="">
+                    </a>
+
+                    <div class="product-top d-flex">
+                        <span class="product-alert">kaka</span>
+
+                        <a href="#" class="bi-heart-fill product-icon ms-auto"></a>
+                    </div>
+
+                    <div class="product-info d-flex">
+                        <div>
+                            <h5 class="product-title mb-0">
+                                <a th:href="@{/products/detail/{id}(id = ${book.id})}" class="product-title-link" th:text="${book.nameBook}"></a>
+                            </h5>
+
+                            <p class="product-p" th:text="${book.describeBook}"></p>
+                        </div>
+<!--                        price below-->
+                        <div style="display: none">
+                            <input type="number" th:value="${book.id}" th:id="${book.id}">
+                        </div>
+                        <small class="product-price text-muted ms-auto" th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 0, 'POINT')} + ' vnđ'"></small>
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <ul style="list-style-type: none">
+                    <li th:if="${bookList.hasPrevious()}" style="display: inline-block; margin-right: 10px">
+                        <a th:href="@{/products(page = ${bookList.number - 1})}">Trang trước</a>
+                    </li>
+                    <div th:each="pageNumber: ${#numbers.sequence(0, bookList.getTotalPages()-1)}" style="display: inline-block; margin-right: 10px">
+                        <span th:if="${pageNumber != bookList.number}">
+                            <a th:href="@{/products(page = ${pageNumber})}" th:text="${pageNumber}"></a>
+                        </span>
+                        <span th:if="${pageNumber == bookList.number}" th:text="${pageNumber}" style="font-weight: bold"></span>
+                    </div>
+                    <li th:if="${bookList.hasNext()}" style="display: inline-block; margin-right: 10px">
+                        <a th:href="@{/products(page = ${bookList.number + 1})}">Trang sau</a>
+                    </li>
+                </ul>
             </div>
 
         </div>
