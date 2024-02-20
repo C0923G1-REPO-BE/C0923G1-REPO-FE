@@ -27,7 +27,74 @@
 </head>
 
 <body>
-<header th:replace="/layout-top::header" class="header">
+<header class="header">
+    <div>
+        <section class="preloader">
+            <div class="spinner">
+                <span class="sk-inner-circle"></span>
+            </div>
+        </section>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <a class="navbar-brand" th:href="@{/}">
+                    <strong><span>Little</span> Book</strong>
+                </a>
+
+                <div class="d-lg-none">
+                    <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
+
+                    <a href="product-detail.html" class="bi-bag custom-icon"></a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link " th:href="@{/}">Trang chủ</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/about}">Tiểu sử</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/product}">Sản phẩm</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/faq}">Hỏi đáp</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" th:href="@{/contact}">Liên hệ</a>
+                        </li>
+                    </ul>
+                    <div>
+                        <div class="dropdown" >
+                            <button style="background-color: white" class="btn btn-secondary dropdown-toggle"
+                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+                                    aria-expanded="false">
+                                <a class="bi-person custom-icon me-3">Tôi</a>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" th:href="@{/profile/{email}(email=${email})}">Hồ sơ của
+                                    tôi</a></li>
+                                <li><a class="dropdown-item" th:href="@{/cart}">Giỏ hàng</a></li>
+                                <li><a class="dropdown-item" th:href="@{/order/{email}(email=${email})}">Đơn hàng của
+                                    tôi</a></li>
+                                <li><a class="dropdown-item" th:href="@{/}">Đăng xuất</a></li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </nav>
+    </div>
 </header>
 <main>
     <section class="slick-slideshow">
@@ -39,7 +106,8 @@
                         <div class="col-lg-6 col-10">
                             <h1 class="slick-title">Little Book</h1>
 
-                            <p class="lead text-white mt-lg-3 mb-lg-5">Nhà sách trực tuyến Little Book mang đến bạn những giá trị tuyệt vời từ sách.
+                            <p class="lead text-white mt-lg-3 mb-lg-5">Nhà sách trực tuyến Little Book mang đến bạn
+                                những giá trị tuyệt vời từ sách.
                                 Luôn cập nhật nhanh nhất sách hay nên đọc các thể loại</p>
                             <a href="about.html" class="btn custom-btn">Tìm hiểu thêm</a>
                         </div>
@@ -57,7 +125,8 @@
                         <div class="col-lg-6 col-10">
                             <h1 class="slick-title">Mẫu sách mới</h1>
 
-                            <p class="lead text-white mt-lg-3 mb-lg-5">Hãy chia sẻ các mẫu SÁCH này đến với bạn bè của bạn nhé.
+                            <p class="lead text-white mt-lg-3 mb-lg-5">Hãy chia sẻ các mẫu SÁCH này đến với bạn bè của
+                                bạn nhé.
                                 Cảm ơn bạn đã ủng hộ chúng tôi.</p>
 
                             <a href="" class="btn custom-btn" th:href="@{/product}">Khám phá sản phẩm</a>
@@ -77,8 +146,9 @@
                         <div class="col-lg-6 col-10">
                             <h1 class="slick-title">Liên hệ chúng tôi</h1>
 
-                            <p class="lead text-white mt-lg-3 mb-lg-5">Chúng tôi rất vui mừng đón nhận các ý kiến khách quan từ các bạn.
-                                </p>
+                            <p class="lead text-white mt-lg-3 mb-lg-5">Chúng tôi rất vui mừng đón nhận các ý kiến khách
+                                quan từ các bạn.
+                            </p>
 
                             <a href="contact.html" class="btn custom-btn">Chia sẻ trải nghiệm</a>
                         </div>
@@ -130,7 +200,8 @@
 
                             <div class="row">
                                 <div class="col-lg-7 col-12">
-                                    <img src="https://static.tramdoc.vn/image/img.news/0/0/0/275.jpg?v=1&w=628&h=365&nocache=1" class="img-fluid" alt="">
+                                    <img src="https://static.tramdoc.vn/image/img.news/0/0/0/275.jpg?v=1&w=628&h=365&nocache=1"
+                                         class="img-fluid" alt="">
                                 </div>
 
                                 <div class="col-lg-5 col-12">
@@ -141,8 +212,10 @@
                                         <p>Sách là bạn và là người thầy, mang cả thế giới tri thức và trải nghiệm của
                                             con người trên khắp thế giới chia sẻ với bạn.</p>
 
-                                        <p>Little Book luôn cập nhật nhanh nhất sách hay nên đọc các thể loại Văn Học, Kinh tế,
-                                            Kiến trúc, Chính trị, Triết học, Sách cho Teen, Thiếu nhi, Truyện tranh, Sách học Tiếng Anh .</p>
+                                        <p>Little Book luôn cập nhật nhanh nhất sách hay nên đọc các thể loại Văn Học,
+                                            Kinh tế,
+                                            Kiến trúc, Chính trị, Triết học, Sách cho Teen, Thiếu nhi, Truyện tranh,
+                                            Sách học Tiếng Anh .</p>
 
                                         <div class="mt-2 mt-lg-auto">
                                             <a href="about.html" class="custom-link mb-2">
@@ -161,9 +234,11 @@
                             <div class="row">
                                 <div class="col-lg-7 col-12">
                                     <div class="ratio ratio-16x9">
-                                        <iframe width="560" height="315" src="https://www.youtube.com/embed/SA_q-c7Zw7s?si=fSQ7l74IfPIKeOpA"
+                                        <iframe width="560" height="315"
+                                                src="https://www.youtube.com/embed/SA_q-c7Zw7s?si=fSQ7l74IfPIKeOpA"
                                                 title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write;
-                                                encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                encrypted-media; gyroscope; picture-in-picture; web-share"
+                                                allowfullscreen></iframe>
                                     </div>
                                 </div>
 
@@ -189,14 +264,16 @@
                         <div class="tab-pane fade" id="pills-skill" role="tabpanel" aria-labelledby="pills-skill-tab">
                             <div class="row">
                                 <div class="col-lg-7 col-12">
-                                    <img src="https://hoanghamobile.com/tin-tuc/wp-content/webp-express/webp-images/uploads/2023/08/nhung-cau-noi-hay-ve-sach-1.jpg.webp" class="img-fluid" alt="">
+                                    <img src="https://hoanghamobile.com/tin-tuc/wp-content/webp-express/webp-images/uploads/2023/08/nhung-cau-noi-hay-ve-sach-1.jpg.webp"
+                                         class="img-fluid" alt="">
                                 </div>
 
                                 <div class="col-lg-5 col-12">
                                     <div class="d-flex flex-column h-100 ms-lg-4 mt-lg-0 mt-5">
                                         <h4 class="mb-3">Điều gì có thể giúp bạn?</h4>
 
-                                        <p>Với nhiều năm phát hành sách, chúng tôi đã có cơ hội gặp gỡ rất nhiều tác giả và đọc giả.</p>
+                                        <p>Với nhiều năm phát hành sách, chúng tôi đã có cơ hội gặp gỡ rất nhiều tác giả
+                                            và đọc giả.</p>
 
                                         <div class="skill-thumb mt-3">
 
@@ -249,7 +326,8 @@
             <div class="row align-items-center">
 
                 <div class="col-lg-6 col-12">
-                    <img src="https://4.bp.blogspot.com/-OsUiNE1oyQY/VlIC8zr94xI/AAAAAAAACRc/UeKLUYlL9sA/s1600/maxresdefault.jpg" class="img-fluid" alt="">
+                    <img src="https://4.bp.blogspot.com/-OsUiNE1oyQY/VlIC8zr94xI/AAAAAAAACRc/UeKLUYlL9sA/s1600/maxresdefault.jpg"
+                         class="img-fluid" alt="">
                 </div>
 
                 <div class="col-lg-6 col-12">
@@ -257,10 +335,14 @@
 
                         <h2 class="mb-4"><span>Tác giả tiêu biểu:</span> Ayn Rand</h2>
 
-                        <p class="lead mb-4">Ayn Rand (2 tháng 2 năm 1905 – 6 tháng 3 năm 1982) là một nhà tiểu thuyết và lý
-                            luận quốc tịch Mỹ sinh tại Nga. Bà nổi tiếng vì đã phát triển học thuyết Chủ nghĩa khách quan và
-                            vì đã viết một số tác phẩm như We the Living (Chúng ta những kẻ sống), The Fountainhead (Suối nguồn),
-                            Atlas Shrugged (Người khổng lồ nghiêng vai), For the new Intellectual (Vì giới tri thức mới) và tiểu thuyết ngắn Anthem.</p>
+                        <p class="lead mb-4">Ayn Rand (2 tháng 2 năm 1905 – 6 tháng 3 năm 1982) là một nhà tiểu thuyết
+                            và lý
+                            luận quốc tịch Mỹ sinh tại Nga. Bà nổi tiếng vì đã phát triển học thuyết Chủ nghĩa khách
+                            quan và
+                            vì đã viết một số tác phẩm như We the Living (Chúng ta những kẻ sống), The Fountainhead
+                            (Suối nguồn),
+                            Atlas Shrugged (Người khổng lồ nghiêng vai), For the new Intellectual (Vì giới tri thức mới)
+                            và tiểu thuyết ngắn Anthem.</p>
 
                         <a href="products.html" class="custom-link">
                             Tìm hiểu thêm về tác giả

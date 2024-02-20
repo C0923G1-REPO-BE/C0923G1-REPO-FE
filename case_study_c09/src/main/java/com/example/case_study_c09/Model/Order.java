@@ -42,4 +42,12 @@ public class Order {
     @JoinColumn(name = "id_payment")
     private Payment payment;
 
+
+    public Long totalPayment(){
+        long paymentOrder = 0;
+        for (OrderDetails orderDetail:orderDetails){
+            paymentOrder += orderDetail.getQuantity() * orderDetail.getPrice();
+        }
+        return paymentOrder;
+    }
 }
