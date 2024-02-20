@@ -824,20 +824,20 @@ button:focus:not(:focus-visible) {
 }
 
 .modal-body {
-  padding: 4rem;
+  padding: 3rem;
 }
 
 .modal-header {
-  padding-top: 7rem;
-  padding-bottom: 5rem;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 
 .modal-header .btn-close {
   position: absolute;
   top: 0;
   right: 0;
-  font-size: 24px;
-  margin: 32px;
+  font-size: 23px;
+  margin: 12px;
 }
 
 #cart-modal .modal-header .btn-close {

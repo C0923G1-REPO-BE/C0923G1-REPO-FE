@@ -15,29 +15,28 @@
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                             data-bs-target="#home-collapse" aria-expanded="false">
-                        Quản lý tour
+                        Quản lý sách
                     </button>
                     <div class="collapse" id="home-collapse" style=" margin-left: 12px">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a th:href="@{tours}" class="link-dark rounded" style="text-decoration: none">Hiển thị
-                                danh sách tour</a></li>
-                            <li><a th:href="@{tours/create}" class="link-dark rounded" style="text-decoration: none">Thêm
-                                mới tour</a></li>
+                            <li><a th:href="@{/book}" class="link-dark rounded" style="text-decoration: none">Hiển thị
+                                danh sách sách</a></li>
+                            <li><a th:href="@{book/create}" class="link-dark rounded" style="text-decoration: none">Thêm
+                                mới sách</a></li>
                         </ul>
                     </div>
                 </li>
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                             data-bs-target="#home-collapse1" aria-expanded="false">
-                        Quản lý hướng dẫn viên
+                        Quản lý tài khoản
                     </button>
                     <div class="collapse" id="home-collapse1" style=" margin-left: 12px">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li><a th:href="@{/tourGuide}" class="link-dark rounded" style="text-decoration: none">Hiển
-                                thị danh sách hướng dẫn
-                                viên</a></li>
+                                thị danh sách tài khoản</a></li>
                             <li><a th:href="@{tourGuide/add}" class="link-dark rounded" style="text-decoration: none">Thêm
-                                mới hướng dẫn viên</a></li>
+                                mới tài khoản</a></li>
                         </ul>
                     </div>
                 </li>
@@ -57,12 +56,12 @@
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                             data-bs-target="#home-collapse3" aria-expanded="false">
-                        Quản lý hợp đồng
+                        Quản lý đơn hàng
                     </button>
                     <div class="collapse" id="home-collapse3" style=" margin-left: 12px">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li><a th:href="@{booking}" class="link-dark rounded" style="text-decoration: none">Hiển thị
-                                danh sách hợp đồng</a></li>
+                                danh sách đơn hàng</a></li>
                         </ul>
                     </div>
                 </li>
