@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.util.Set;
 
 @Entity
@@ -24,6 +25,8 @@ public class Book {
     private String image;
     private String describeBook;
     private boolean isDelete;
+    private LocalDate date = LocalDate.now();
+
 
     @OneToMany(mappedBy = "book")
     private Set<OrderDetails> orderDetails;

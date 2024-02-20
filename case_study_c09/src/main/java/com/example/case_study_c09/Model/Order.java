@@ -37,6 +37,16 @@ public class Order {
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 
-    @OneToOne(mappedBy = "orders")
+    @ManyToOne
+    @JoinColumn(name = "payment_id")
     private Payment payment;
+
+
+    public Long totalPayment(){
+        long paymentOrder = 0;
+        for (OrderDetails orderDetail:orderDetails){
+            paymentOrder += orderDetail.getQuantity() * orderDetail.getPrice();
+        }
+        return paymentOrder;
+    }
 }

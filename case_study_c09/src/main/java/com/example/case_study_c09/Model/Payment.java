@@ -18,11 +18,4 @@ public class Payment {
     private Integer id;
     private boolean status;
 
-    @OneToOne
-    private Order orders;
-
-    public Payment(boolean status, Order order) {
-        this.status = status;
-        this.orders = order;
-    }
 }
