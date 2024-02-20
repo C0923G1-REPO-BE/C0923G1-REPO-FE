@@ -38,7 +38,7 @@ public class Order {
     private Account account;
 
     @ManyToOne
-    @JoinColumn(name = "payment_id")
+    @JoinColumn(name = "id_payment")
     private Payment payment;
 
 
