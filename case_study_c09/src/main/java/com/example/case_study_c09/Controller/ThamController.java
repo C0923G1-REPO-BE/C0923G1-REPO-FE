@@ -122,7 +122,7 @@ public class ThamController {
     //quan ly don hang cua admin
     @GetMapping("/admin-order")
     public String adminOrder(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page){
-        Pageable pageable = PageRequest.of(page, 4);
+        Pageable pageable = PageRequest.of(page, 11);
         Page<Order> orderPage = ordersService.findAll(pageable);
         model.addAttribute("orderPage", orderPage);
         return "admin-order";

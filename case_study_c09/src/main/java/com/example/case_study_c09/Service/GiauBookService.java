@@ -10,9 +10,10 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class GiauBookService implements IGiauBookService{
+public class GiauBookService implements IGiauBookService {
     @Autowired
     private IGiauBookRepository bookRepository;
+
     @Override
     public List<Book> findAll() {
         return bookRepository.findAll();
@@ -34,7 +35,17 @@ public class GiauBookService implements IGiauBookService{
     }
 
     @Override
+    public Page<Book> getListLock(Pageable pageable) {
+        return bookRepository.findAllBookLock(pageable);
+    }
+
+    @Override
     public void delete(Book book) {
         bookRepository.delete(book);
+    }
+
+    @Override
+    public Page<Book> findByNameBookContaining(String name, Pageable pageable) {
+        return bookRepository.findByNameBookContaining(name, pageable);
     }
 }

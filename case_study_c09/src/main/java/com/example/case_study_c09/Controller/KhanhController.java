@@ -33,7 +33,7 @@ public class KhanhController {
     @GetMapping("")
     public String showProducts(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page) {
 //        List<Book> bookList = iKhanhBookService.findAll();
-        Pageable bookPageable = PageRequest.of(page, 2);
+        Pageable bookPageable = PageRequest.of(page, 8);
         Page<Book> bookPage = this.iKhanhBookService.findAllBook(bookPageable);
         model.addAttribute("bookList", bookPage);
         return "products";
@@ -73,6 +73,7 @@ public class KhanhController {
 
     @PostMapping("/search")
     public String search(){
+        String k = "k";
         return "products";
     }
 }

@@ -21,7 +21,9 @@
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
                             <li><a th:href="@{/book}" class="link-dark rounded" style="text-decoration: none">Hiển thị
                                 danh sách sách</a></li>
-                            <li><a th:href="@{book/create}" class="link-dark rounded" style="text-decoration: none">Thêm
+                            <li><a th:href="@{/book/lock}" class="link-dark rounded" style="text-decoration: none">Hiển thị
+                                sách đã xoá</a></li>
+                            <li><a th:href="@{/book/create}" class="link-dark rounded" style="text-decoration: none">Thêm
                                 mới sách</a></li>
                         </ul>
                     </div>
@@ -33,9 +35,11 @@
                     </button>
                     <div class="collapse" id="home-collapse1" style=" margin-left: 12px">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a th:href="@{/tourGuide}" class="link-dark rounded" style="text-decoration: none">Hiển
+                            <li><a th:href="@{/account}" class="link-dark rounded" style="text-decoration: none">Hiển
                                 thị danh sách tài khoản</a></li>
-                            <li><a th:href="@{tourGuide/add}" class="link-dark rounded" style="text-decoration: none">Thêm
+                            <li><a th:href="@{/account/lock}" class="link-dark rounded" style="text-decoration: none">Hiển
+                                thị tài khoản bị khoá</a></li>
+                            <li><a th:href="@{/account/add}" class="link-dark rounded" style="text-decoration: none">Thêm
                                 mới tài khoản</a></li>
                         </ul>
                     </div>
@@ -47,7 +51,7 @@
                     </button>
                     <div class="collapse" id="home-collapse2" style=" margin-left: 12px">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a th:href="@{/account}" class="link-dark rounded" style="text-decoration: none">Hiển
+                            <li><a th:href="@{/customer}" class="link-dark rounded" style="text-decoration: none">Hiển
                                 thị
                                 danh sách khách hàng</a></li>
                         </ul>

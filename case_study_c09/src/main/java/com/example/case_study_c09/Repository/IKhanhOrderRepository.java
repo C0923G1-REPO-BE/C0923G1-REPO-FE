@@ -17,5 +17,8 @@ public interface IKhanhOrderRepository extends JpaRepository<Order, Integer> {
     @Query(value = "select account.* from account where account.id = :id;", nativeQuery = true)
     Account findAccountById(@Param("id")Integer idAccount);
 
-//    select * from account join customer on account.customer_id = customer.id where account.id = 1;
+    @Query(value = "select * from orders where code = :code", nativeQuery = true)
+    Order findByCodeOrder(@Param("code") Integer codeOrder);
+
+
 }

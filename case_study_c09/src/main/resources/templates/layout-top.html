@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div th:fragment="header" >
+<div th:fragment="header">
     <section class="preloader">
         <div class="spinner">
             <span class="sk-inner-circle"></span>
@@ -43,26 +43,30 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/about}">Tiểu sử</a>
+                        <a class="nav-link" th:href="@{/home/about}">Tiểu sử</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/product}">Sản phẩm</a>
+                        <a class="nav-link" th:href="@{/products}">Sản phẩm</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/faq}">Hỏi đáp</a>
+                        <a class="nav-link" th:href="@{/home/faq}">Hỏi đáp</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/contact}">Liên hệ</a>
+                        <a class="nav-link" th:href="@{/home/contact}">Liên hệ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/book}">Quản lý</a>
                     </li>
                 </ul>
 
                 <div class="d-none d-lg-block">
                     <a th:href="@{/login}" class="bi-person custom-icon me-3"></a>
 
-                    <a th:href="@{/}" class="bi-bag custom-icon"></a>
+                    <a th:href="@{/cart}" class="bi-bag custom-icon"></a>
                 </div>
             </div>
         </div>
@@ -78,7 +82,8 @@
                     <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little
                         Fashion</strong></p>
                     <br>
-                    <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a>
+                    <p class="copyright-text">Designed by <a href="https://www.tooplate.com/"
+                                                             target="_blank">Tooplate</a>
                     </p>
                 </div>
 
