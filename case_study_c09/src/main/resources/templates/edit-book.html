@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Cập nhật sách</title>
+  <link href="/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/bootstrap-icons.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="/css/slick.css"/>
+
+  <link href="/css/tooplate-little-fashion.css" rel="stylesheet">
+  <style>
+    .h2 {
+      text-align: center;
+      font-weight: bold;
+      color: black;
+      margin-bottom: 40px;
+      text-transform: uppercase
+    }
+  </style>
+</head>
+<body>
+
+<div class="">
+  <header th:replace="/layout-top::header" class="header">
+  </header>
+</div>
+<section class="section-padding">
+  <div class="row">
+    <div class="col-2">
+      <aside class="sidebar">
+        <header th:replace="/layout-admin::homeAdmin">
+        </header>
+      </aside>
+    </div>
+    <div class="col-10">
+      <div class="container flex" style="width: 60%; height: 100%; padding: 0.5em">
+        <form th:action="@{/book/edit}" method="post" th:object="${book}"
+              style="width: 100%; position: relative">
+          <h2 class="h2">Cập nhật thông tin sách</h2>
+          <input type="hidden" th:field="*{id}">
+          <div class="form-group">
+            <label for="name" class="form-label">Tên sách:</label>
+            <input type="text" class="form-control" id="name" name="name" th:field="*{nameBook}"
+                   maxlength="30"
+                   required>
+            <div class="form-text" style="color: red" th:if="${#fields.hasErrors('nameBook')}"
+                 th:errors="*{nameBook}"></div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="price" class="form-label">Giá:</label>
+            <input type="text" class="form-control" id="price" name="price" th:field="*{price}" required>
+            <div class="form-text" style="color: red" th:if="${#fields.hasErrors('price')}"
+                 th:errors="*{price}"></div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="quantity" class="form-label">Số lượng:</label>
+            <input type="number" class="form-control" id="quantity" name="quantity"
+                   th:field="*{quantity}"
+                   maxlength="13" required minlength="10">
+            <div class="form-text" style="color: red" th:if="${#fields.hasErrors('quantity')}"
+                 th:errors="*{quantity}"></div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="image" class="form-label">Ảnh:</label>
+            <input type="text" class="form-control" id="image" name="image" th:field="*{image}"
+                   required>
+            <div class="form-text" style="color: red" th:if="${#fields.hasErrors('image')}"
+                 th:errors="*{image}"></div>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="category" class="form-label">Thể loại:</label>
+            <select id="category" th:field="*{category}" class="form-control">
+              <option th:each="ct:${category}" th:value="${ct.id}" th:text="${ct.name}"></option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="author" class="form-label">Tác giả:</label>
+            <select id="author" th:field="*{author}" class="form-control">
+              <option th:each="a:${author}" th:value="${a.id}" th:text="${a.name}"></option>
+            </select>
+          </div>
+          <br>
+          <div class="form-group">
+            <label for="describeBook" class="form-label">Mô tả:</label>
+            <textarea style="height: 300px" class="form-control" id="describeBook" name="describeBook" th:field="*{describeBook}"
+                   maxlength="30" required>
+            </textarea>
+            <div class="form-text" style="color: red" th:if="${#fields.hasErrors('describeBook')}"
+                 th:errors="*{describeBook}"></div>
+          </div>
+          <br>
+          <br>
+          <br>
+          <input type="submit" class="btn btn-primary" value="Cập nhật sách"
+                 style="width: 45%; position: absolute;bottom: 0">
+          <a th:href="@{/book}" class="btn"
+             style="right: 0;width: 45%; position: absolute;bottom: 0; background-color: #f44566; color: white;">Quay
+            lại trang trước</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+<footer th:replace="/layout-top::footer" class="footer">
+</footer>
+</body>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/Headroom.js"></script>
+<script src="/js/jQuery.headroom.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/custom.js"></script>
+</html>

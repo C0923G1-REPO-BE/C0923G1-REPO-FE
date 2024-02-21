@@ -87,9 +87,9 @@
                     <br>
                     <div class="form-group">
                         <label for="describeBook" class="form-label">Mô tả:</label>
-                        <input type="text" class="form-control" id="describeBook" name="describeBook" th:field="*{describeBook}"
-                               maxlength="30"
-                               required>
+                        <textarea style="height: 300px" class="form-control" id="describeBook" name="describeBook" th:field="*{describeBook}"
+                               maxlength="30" required>
+                        </textarea>
                         <div class="form-text" style="color: red" th:if="${#fields.hasErrors('describeBook')}"
                              th:errors="*{describeBook}"></div>
                     </div>
