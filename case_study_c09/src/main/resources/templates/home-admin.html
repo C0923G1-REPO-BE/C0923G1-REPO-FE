@@ -110,7 +110,7 @@
 
                             </div>
                             <li class="page-item" th:if="${book.hasNext()}">
-                                <a class="page-link" th:href="@{/tourGuide(page = ${book.number + 1})}">Next</a>
+                                <a class="page-link" th:href="@{/book(page = ${book.number + 1})}">Next</a>
                             </li>
                         </ul>
                     </nav>
