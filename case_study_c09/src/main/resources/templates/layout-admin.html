@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -56,11 +56,12 @@
                 <li class="mb-1">
                     <button class="btn btn-toggle align-items-center rounded collapsed" data-bs-toggle="collapse"
                             data-bs-target="#home-collapse3" aria-expanded="false">
-                        Quản lý đơn hàng
+                       Quản lý đơn hàng
+
                     </button>
                     <div class="collapse" id="home-collapse3" style=" margin-left: 12px">
                         <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
-                            <li><a th:href="@{booking}" class="link-dark rounded" style="text-decoration: none">Hiển thị
+                            <li><a th:href="@{/admin-order}" class="link-dark rounded" style="text-decoration: none">Hiển thị
                                 danh sách đơn hàng</a></li>
                         </ul>
                     </div>

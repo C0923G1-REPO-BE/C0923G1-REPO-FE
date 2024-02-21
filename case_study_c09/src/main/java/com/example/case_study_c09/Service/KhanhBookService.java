@@ -58,7 +58,7 @@ public class KhanhBookService implements IKhanhBookService {
         System.out.println(codeOrder);
         LocalDate bookingDate = LocalDate.now();
         //id account lay ve để tìm ra tên khách hàng (thông qua đăng nhập)
-        Integer idAccount = 2;
+        Integer idAccount = 1;
 
         String nameConsignee = iKhanhAccountRepository.findById(idAccount).orElse(null).getCustomer().getName();
 
