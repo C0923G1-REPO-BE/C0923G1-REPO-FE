@@ -9,6 +9,9 @@ import com.example.case_study_c09.Service.IThamOrdersService;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -116,4 +119,36 @@ public class ThamController {
         return "redirect:/order/"+email;
     }
 
+    //quan ly don hang cua admin
+    @GetMapping("/admin-order")
+    public String adminOrder(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page){
+        Pageable pageable = PageRequest.of(page, 11);
+        Page<Order> orderPage = ordersService.findAll(pageable);
+        model.addAttribute("orderPage", orderPage);
+        return "admin-order";
+    }
+    @PostMapping("/customer/search")
+    public String searchCustomer(@RequestParam ("code-search") String code, Model model){
+        List<Order> orderList = ordersService.findByCode(code);
+        model.addAttribute("orderPage",orderList);
+        return "admin-order";
+    }
+    @GetMapping("/order-detail-admin/{idOrder}")
+    public String orderDetailAdmin(@PathVariable ("idOrder") int idOrder, Model model){
+        Order order = ordersService.findById(idOrder);
+        Set<OrderDetails> orderDetailsSet = orderDetailsService.findByOrders(order);
+        model.addAttribute("orderDetailsSet",orderDetailsSet);
+        model.addAttribute("order",order);
+        return "order-detail-admin";
+    }
+
+    @GetMapping("/cancel-order-admin/{idOrder}")
+    public String cancelOrderAdmin(@PathVariable ("idOrder") int idOrder, Model model){
+        Order order = ordersService.findById(idOrder);
+//        Admin có quyền hủy hết tất cả đơn
+            ordersService.cancelOrder(idOrder);
+            Set<Order> orders = ordersService.findByIdCheckDel(idOrder) ;
+            model.addAttribute("orderSet",orders);
+        return "redirect:/admin-order";
+    }
 }

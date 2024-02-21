@@ -62,7 +62,7 @@
                         </li>
 
                         <li class="nav-item">
-                            <a class="nav-link" th:href="@{/product}">Sản phẩm</a>
+                            <a class="nav-link" th:href="@{/products}">Sản phẩm</a>
                         </li>
 
                         <li class="nav-item">
@@ -74,11 +74,27 @@
                         </li>
                     </ul>
                     <div>
-                        <div class="dropdown" >
+<!--                        <div class="dropdown" >-->
+<!--                            <button style="background-color: white" class="btn btn-secondary dropdown-toggle"-->
+<!--                                    type="button" id="" data-bs-toggle="dropdown"-->
+<!--                                    aria-expanded="false">-->
+<!--                                <a class="bi-person custom-icon me-3">Tôi</a>-->
+<!--                            </button>-->
+<!--                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--                                <li><a class="dropdown-item" th:href="@{/profile/{email}(email=${email})}">Hồ sơ của-->
+<!--                                    tôi</a></li>-->
+<!--                                <li><a class="dropdown-item" th:href="@{/cart}">Giỏ hàng</a></li>-->
+<!--                                <li><a class="dropdown-item" th:href="@{/order/{email}(email=${email})}">Đơn hàng của-->
+<!--                                    tôi</a></li>-->
+<!--                                <li><a class="dropdown-item" th:href="@{/}">Đăng xuất</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+                        <div class="d-none d-lg-block">
+                            <div class="dropdown" >
                             <button style="background-color: white" class="btn btn-secondary dropdown-toggle"
                                     type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                     aria-expanded="false">
-                                <a class="bi-person custom-icon me-3">Tôi</a>
+                                <a class="bi-person custom-icon me-3"></a>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                 <li><a class="dropdown-item" th:href="@{/profile/{email}(email=${email})}">Hồ sơ của
@@ -88,6 +104,10 @@
                                     tôi</a></li>
                                 <li><a class="dropdown-item" th:href="@{/}">Đăng xuất</a></li>
                             </ul>
+                                <a th:href="@{/cart}" class="bi-bag custom-icon"></a>
+                        </div>
+<!--                            <a th:href="@{/login}" class="bi-person custom-icon me-3"></a>-->
+
                         </div>
                     </div>
 

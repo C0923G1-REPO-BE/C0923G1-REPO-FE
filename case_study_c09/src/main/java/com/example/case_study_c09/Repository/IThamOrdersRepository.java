@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Set;
 
 @Repository
@@ -24,4 +25,8 @@ public interface IThamOrdersRepository extends JpaRepository<Order,Integer> {
 
     @Query(nativeQuery = true, value = "select * from orders where is_delete = 0")
     Set<Order> findByIdCheckDel(@Param("param") int idOrder);
+
+    List<Order> findByCode(String code);
+
+
 }
