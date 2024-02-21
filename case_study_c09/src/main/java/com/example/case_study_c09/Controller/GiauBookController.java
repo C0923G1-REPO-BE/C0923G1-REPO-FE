@@ -30,20 +30,31 @@ public class GiauBookController {
     private IGiauCategoryService iGiauCategoryService;
     @Autowired
     private IGiauAuthorService iGiauAuthorService;
+
     @ModelAttribute("category")
-    public List<Category> category(){
+    public List<Category> category() {
         return iGiauCategoryService.findAll();
     }
+
     @ModelAttribute("author")
-    public List<Author> author(){
+    public List<Author> author() {
         return iGiauAuthorService.findAll();
     }
+
     @GetMapping("")
-    public String show(@PageableDefault(value = 4) Pageable pageable, Model model){
+    public String show(@PageableDefault(value = 4) Pageable pageable, Model model) {
         Page<Book> books = iGiauBookService.getList(pageable);
         model.addAttribute("book", books);
         return "home-admin";
     }
+
+    @GetMapping("/lock")
+    public String showLock(@PageableDefault(value = 4) Pageable pageable, Model model) {
+        Page<Book> books = iGiauBookService.getListLock(pageable);
+        model.addAttribute("book", books);
+        return "list-book-lock";
+    }
+
     @PostMapping("/delete")
     public String delete(@RequestParam("id") int id) {
         Book book = iGiauBookService.findById(id);
@@ -51,16 +62,26 @@ public class GiauBookController {
         iGiauBookService.save(book);
         return "redirect:/book";
     }
+
+    @PostMapping("/unlock")
+    public String unlock(@RequestParam("id") int id) {
+        Book book = iGiauBookService.findById(id);
+        book.setDelete(false);
+        iGiauBookService.save(book);
+        return "redirect:/book/lock";
+    }
+
     @GetMapping("/create")
-    public String add(Model model){
+    public String add(Model model) {
         model.addAttribute("book", new BookDTO());
         return "add-book";
     }
+
     @PostMapping("/create")
     public String addBook(@Valid @ModelAttribute("book") BookDTO bookDTO, BindingResult bindingResult,
-                          Model model, RedirectAttributes redirectAttributes){
+                          Model model, RedirectAttributes redirectAttributes) {
         new BookDTO().validate(bookDTO, bindingResult);
-        if (bindingResult.hasFieldErrors()){
+        if (bindingResult.hasFieldErrors()) {
             model.addAttribute("bookDTO", bookDTO);
             return "add-book";
         }
@@ -68,5 +89,34 @@ public class GiauBookController {
         BeanUtils.copyProperties(bookDTO, book);
         iGiauBookService.save(book);
         return "redirect:/book";
+    }
+
+    @GetMapping("edit/{id}")
+    public String edit(@PathVariable int id, Model model) {
+        model.addAttribute("book", iGiauBookService.findById(id));
+        return "edit-book";
+    }
+
+    @PostMapping("edit")
+    public String editBook(@Valid @ModelAttribute("book") BookDTO bookDTO, BindingResult bindingResult,
+                           Model model, RedirectAttributes redirectAttributes) {
+        new BookDTO().validate(bookDTO, bindingResult);
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("bookDTO", bookDTO);
+            return "edit-book";
+        }
+        Book book = new Book();
+        BeanUtils.copyProperties(bookDTO, book);
+        iGiauBookService.save(book);
+        return "redirect:/book";
+    }
+
+    @PostMapping("search")
+    public String search(@RequestParam("name-search") String name,
+                         @PageableDefault(value = 4) Pageable pageable,
+                         Model model) {
+        Page<Book> books = iGiauBookService.findByNameBookContaining(name, pageable);
+        model.addAttribute("book", books);
+        return "home-admin";
     }
 }

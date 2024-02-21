@@ -8,9 +8,16 @@ import java.util.List;
 
 public interface IGiauBookService {
     List<Book> findAll();
+
     Book findById(int id);
+
     void save(Book book);
+
     Page<Book> getList(Pageable pageable);
+
+    Page<Book> getListLock(Pageable pageable);
+
     void delete(Book book);
 
+    Page<Book> findByNameBookContaining(String name, Pageable pageable);
 }

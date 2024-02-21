@@ -11,15 +11,15 @@ insert into category(name, is_delete)
 value ("Trinh thám",0), ("Tiểu thuyết",0), ("Self Help",0);
 
 insert into book(name_book,price,quantity,date,image,describe_book,category_id,author_id,is_delete)
-value('KẺ KHÔNG THỂ GIÃ TỪ',480000,30,'2023-12-01','http://static.nhanam.com.vn/thumb/0x320/crop/Books/Images/2023/11/14/YQ3QX7I4.jpg','KIỆT TÁC TRINH THÁM ĐƯỢC MURAKAMI ĐÁNH GIÁ RẤT CAO!Một vụ án chưa giải quyết xong, một vụ án khác lại đến.
+value('KẺ KHÔNG THỂ GIÃ TỪ',480000,30,'2023-12-01','https://d1j8r0kxyu9tj8.cloudfront.net/images/1567492611Rj5siYiYrkqcvX8.jpg','KIỆT TÁC TRINH THÁM ĐƯỢC MURAKAMI ĐÁNH GIÁ RẤT CAO!Một vụ án chưa giải quyết xong, một vụ án khác lại đến.
 Ẩn dưới vẻ uể oải thường trực của đời sống giàu có, là những khuôn mặt người như những con búp bê sứ đã vỡ vụn từ lâu nhưng được chắp vá lại bằng sự hào nhoáng đến chán 
 chường. Trong Kẻ không thể giã từ, một lần nữa độc giả cùng Philip Marlowe dấn bước vào vụ án càng lúc càng rắc rối, nơi những bóng ma quá khứ trở về để hoàn tất lời từ biệt.
 “Tôi dịch những gì tôi thích đọc. Tôi đã dịch tất cả các tiểu thuyết của Raymond Chandler. Tôi thích phong cách của anh ấy rất nhiều. Tôi đã đọc The Long Goodbye năm hoặc sáu lần.”',1,1,0),
-('NỖI NIỀM CỦA THÁM TỬ GALILEO',167000,20,'2023-12-01','http://static.nhanam.com.vn/thumb/0x320/crop/Books/Images/2023/9/6/GSEA8MAX.jpg','Một lá thư kỳ quái được gửi đến Sở cảnh sát Tokyo từ kẻ tự xưng "Bàn tay của ác ma" 
+('NỖI NIỀM CỦA THÁM TỬ GALILEO',167000,20,'2023-12-01','https://marketplace.canva.com/EAD5DFBuM78/1/0/1003w/canva-c%E1%BA%B7p-%C4%91%C3%B4i-trong-c%E1%BB%8F-khoa-h%E1%BB%8Dc-vi%E1%BB%85n-t%C6%B0%E1%BB%9Fng-s%C3%A1ch-b%C3%ACa-eRK4o7m6a6c.jpg','Một lá thư kỳ quái được gửi đến Sở cảnh sát Tokyo từ kẻ tự xưng "Bàn tay của ác ma" 
 cảnh báo về một vụ giết người hàng loạt, đồng thời khiêu khích đích danh phó giáo sư Yukawa Manabu của đại học Teito. 
 Mục đích nhắm đến Yukawa của tên tội phạm là gì, cách thức giết người đáng sợ vượt qua hiểu biết thông thường là gì? Yukawa từng tuyên bố sẽ không hợp tác với cảnh sát nay lại phải đương đầu với một vụ án cận kề. 
 Cuốn thứ tư trong series Thám tử Galileo khắc họa cuộc quyết đấu giữa tên tội phạm quỷ quyệt và nhà vật lý thiên tài ở một quy mô vượt mọi hình dung.',1,2,0),
-('NGỤY CHỨNG CỦA SOLOMON',267000,10,'2022-07-22','http://static.nhanam.com.vn/thumb/0x320/crop/Books/Images/2023/4/18/DRIPI7CD.jpg','Hai người bạn cùng lớp chết không rõ ràng. Giới truyền thông đưa tin đầy thiên kiến. 
+('NGỤY CHỨNG CỦA SOLOMON',267000,10,'2022-07-22','https://thanhnien.mediacdn.vn/Uploaded/minhnguyet/2022_05_08/bia-sach1-114.jpg','Hai người bạn cùng lớp chết không rõ ràng. Giới truyền thông đưa tin đầy thiên kiến. 
 Thầy cô bỏ mặc học sinh, tìm mọi cách để lấp liếm và xoa dịu tình hình. Ở thế giới bên kia, Kashiwagi
 Takuya đang cất giữ bí mật gì? Khi tất cả còn chìm trong màn sương dối trá mịt mờ, làm sao chúng ta có thể ngang nhiên sống tiếp và tiến về phía trước?
 Hãy cùng nhau tìm ra sự thật!
