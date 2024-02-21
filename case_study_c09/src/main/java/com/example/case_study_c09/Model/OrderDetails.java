@@ -19,7 +19,7 @@ public class OrderDetails {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String code;
-    private Double price;
+    private Integer price;
     private Integer quantity;
     private boolean isDelete;
 

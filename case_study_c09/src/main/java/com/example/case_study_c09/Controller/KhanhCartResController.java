@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +21,7 @@ public class KhanhCartResController {
     private IKhanhBookService iKhanhBookService;
 
     @PostMapping("/save")
-    public void saveCartToOrder(@RequestBody CartBook[] bookData) {
+    public void saveCartToOrder(@RequestBody CartBook[] bookData, @SessionAttribute("cart") Map<Book, Integer> cartMap) {
 
         System.out.println("co vao :))");
         List<CartBook> cartBookList = new ArrayList<>();
@@ -31,7 +32,10 @@ public class KhanhCartResController {
         }
 
         iKhanhBookService.addOrder(cartBookList, address);
-
+        //Xóa giỏ hàng session
+        if(!cartMap.isEmpty()){
+            cartMap.clear();
+        }
     }
 
     @PostMapping("/update-cart")

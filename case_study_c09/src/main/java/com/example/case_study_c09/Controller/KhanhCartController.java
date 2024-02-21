@@ -14,14 +14,19 @@ public class KhanhCartController {
 
     @GetMapping("")
     public String showCartPage(@SessionAttribute("cart") Map<Book, Integer> cartMap, Model model) {
-        model.addAttribute("cartMap", cartMap);
-        return "cart";
+        if (cartMap.isEmpty()) {
+            return "empty-cart";
+        } else {
+            model.addAttribute("cartMap", cartMap);
+            return "cart";
+        }
+
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteBookCart(@PathVariable("id")Integer id, Model model, @SessionAttribute("cart") Map<Book, Integer> cartMap){
-        for (Book book: cartMap.keySet()){
-            if(book.getId().equals(id)){
+    public String deleteBookCart(@PathVariable("id") Integer id, Model model, @SessionAttribute("cart") Map<Book, Integer> cartMap) {
+        for (Book book : cartMap.keySet()) {
+            if (book.getId().equals(id)) {
                 cartMap.remove(book);
                 break;
             }
@@ -30,14 +35,14 @@ public class KhanhCartController {
     }
 
     @PostMapping("/save")
-    public String saveToOrder(@ModelAttribute("address")String address){
-        if (address == null || address == ""){
+    public String saveToOrder(@ModelAttribute("address") String address) {
+        if (address == null || address == "") {
+
             return "cart";
         } else {
             return "successfully-order";
         }
     }
-
 
 
 }

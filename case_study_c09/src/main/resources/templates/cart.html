@@ -61,7 +61,7 @@
                 <div class="row">
 
                     <div class="col-lg-8 col-8 mb-3">
-                        <div class="col-lg-12 col-12 shadow p-3 mb-5 bg-body-tertiary rounded border d-flex qua-book-qua"
+                        <div class="col-lg-12 col-12 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-2 d-flex qua-book-qua"
                              th:each="book: ${cartMap.keySet()}"
                              th:attr="data-bookid=${book.id}, data-quan=${cartMap.get(book)}, data-price=${book.price}">
                             <div class="col-3">
@@ -69,11 +69,10 @@
                                 <br><img class="mt-2" th:src="${book.image}" style="width: 110px; height: 140px"></div>
                             <div class="col-9">
                                 <p th:text="'Tên sách: ' + ${book.nameBook}"></p>
-                                <p th:text="'Giá: ' + ${book.price}"></p>
-                                <p th:text="'Mô tả: ' + ${book.describeBook}"></p>
+                                <p th:text="'Giá: ' + ${#numbers.formatDecimal(book.price, 0, 'COMMA', 0, 'POINT')} + ' vnđ'"></p>
+                                <!--                                <p th:text="'Mô tả: ' + ${book.describeBook}"></p>-->
                                 <!--                        <p th:text="'Số lượng: ' + ${cartMap.get(book)}"></p>-->
                                 <p>Số lượng:</p>
-                                <!--                                <input type="hidden" th:value="${book.id}" class="id-book-id">-->
                                 <p style="width: 20%" onclick="updateQuantity()"><input type="number"
                                                                                         th:name="${book.id}"
                                                                                         th:id="${book.id}"
@@ -90,10 +89,17 @@
                         </div>
                     </div>
 
-                    <div class="col-lg-4 col-4">Địa chỉ:&nbsp
-                        <input type="text" name="address" required><br><br>
+                    <div class="col-lg-4 col-4 shadow-sm p-3 mb-5 bg-body-tertiary rounded border border-2">Địa
+                        chỉ giao hàng:&nbsp
+                        <div class="form-floating mt-3">
+                            <textarea class="form-control" placeholder="Nhập địa chỉ" id="floatingTextarea2" style="height: 100px" name="address" required></textarea>
+                            <label for="floatingTextarea2">Bắt buộc</label>
+                        </div>
+                        <br>
                         <p>Tổng giá tiền: <span id="total"></span></p>
-                        <button onclick="doOrder()" type="submit" class="btn btn-warning">Đặt hàng</button>
+                        <div class="d-grid gap-2">
+                            <button onclick="doOrder()" type="submit" class="btn btn-warning">Đặt hàng</button>
+                        </div>
                     </div>
 
                 </div>
@@ -115,13 +121,13 @@
 <script src="/js/slick.min.js"></script>
 <script src="/js/custom.js"></script>
 
-<script src="js/input-numspin.min.js"></script>
+<script src="/js/input-numspin.min.js"></script>
 
 <script>
     function doOrder() {
         let bookElement = document.querySelectorAll(".qua-book-qua");
         let bookData = [];
-        let address = document.querySelector('input[name = "address"]').value;
+        let address = document.querySelector('textarea[name = "address"]').value;
         console.log(address);
         bookElement.forEach(function (bookElement) {
             let bookId = bookElement.getAttribute("data-bookid");
@@ -171,7 +177,7 @@
     }
 
 
-    function calculateCost(){
+    function calculateCost() {
         let bookElement = document.querySelectorAll(".qua-book-qua");
         let bookData = [];
         let sum = 0;
@@ -216,7 +222,7 @@
     }
 
     //load lần đầu
-    document.addEventListener("DOMContentLoaded", function (){
+    document.addEventListener("DOMContentLoaded", function () {
         calculateCost();
     });
 
