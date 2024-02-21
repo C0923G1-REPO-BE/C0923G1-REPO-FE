@@ -13,7 +13,7 @@
 </head>
 <body>
 
-<div th:fragment="header" >
+<div th:fragment="header">
     <section class="preloader">
         <div class="spinner">
             <span class="sk-inner-circle"></span>
@@ -43,19 +43,23 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/about}">Tiểu sử</a>
+                        <a class="nav-link" th:href="@{/home/about}">Tiểu sử</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/product}">Sản phẩm</a>
+                        <a class="nav-link" th:href="@{/home/product}">Sản phẩm</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/faq}">Hỏi đáp</a>
+                        <a class="nav-link" th:href="@{/home/faq}">Hỏi đáp</a>
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" th:href="@{/contact}">Liên hệ</a>
+                        <a class="nav-link" th:href="@{/home/contact}">Liên hệ</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" th:href="@{/book}">Quản lý</a>
                     </li>
                 </ul>
 
@@ -78,7 +82,8 @@
                     <p class="copyright-text text-muted mt-lg-5 mb-4 mb-lg-0">Copyright © 2022 <strong>Little
                         Fashion</strong></p>
                     <br>
-                    <p class="copyright-text">Designed by <a href="https://www.tooplate.com/" target="_blank">Tooplate</a>
+                    <p class="copyright-text">Designed by <a href="https://www.tooplate.com/"
+                                                             target="_blank">Tooplate</a>
                     </p>
                 </div>
 

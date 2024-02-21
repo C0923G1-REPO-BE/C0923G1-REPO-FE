@@ -42,14 +42,14 @@ public class GiauBookController {
     }
 
     @GetMapping("")
-    public String show(@PageableDefault(value = 4) Pageable pageable, Model model) {
+    public String show(@PageableDefault(value = 10) Pageable pageable, Model model) {
         Page<Book> books = iGiauBookService.getList(pageable);
         model.addAttribute("book", books);
         return "home-admin";
     }
 
     @GetMapping("/lock")
-    public String showLock(@PageableDefault(value = 4) Pageable pageable, Model model) {
+    public String showLock(@PageableDefault(value = 10) Pageable pageable, Model model) {
         Page<Book> books = iGiauBookService.getListLock(pageable);
         model.addAttribute("book", books);
         return "list-book-lock";
