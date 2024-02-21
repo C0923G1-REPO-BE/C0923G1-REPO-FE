@@ -46,7 +46,7 @@
 
 
                 <div class="d-flex align-items-center" style="margin-bottom: 40px">
-                    <form class="form-inline" th:action="@{/tourGuide/search}" method="post">
+                    <form class="form-inline" th:action="@{/book/search}" method="post">
                         <div class="input-group">
                             <input type="text" class="form-control" name="name-search"
                                    placeholder="Nhập tên sách cần tìm">
@@ -110,7 +110,7 @@
 
                             </div>
                             <li class="page-item" th:if="${book.hasNext()}">
-                                <a class="page-link" th:href="@{/tourGuide(page = ${book.number + 1})}">Next</a>
+                                <a class="page-link" th:href="@{/book(page = ${book.number + 1})}">Next</a>
                             </li>
                         </ul>
                     </nav>
