@@ -22,11 +22,10 @@ public class Book {
     private String nameBook;
     private Integer price;
     private Integer quantity;
+    private LocalDate date = LocalDate.now();
     private String image;
     private String describeBook;
     private boolean isDelete;
-    private LocalDate date = LocalDate.now();
-
 
     @OneToMany(mappedBy = "book")
     private Set<OrderDetails> orderDetails;
