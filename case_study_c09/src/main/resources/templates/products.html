@@ -46,7 +46,6 @@
 <section class="products section-padding">
     <div class="container">
         <div class="row">
-
             <!--            <div class="col-12">-->
             <!--                <h2 class="mb-5">Sách mới</h2>-->
             <!--            </div>-->
@@ -212,11 +211,15 @@
             <!--            </div>-->
 
             <!--            sp chinh-->
+            <div class="col-12 mb-5" th:if="${message}" id="message">
+                <p th:text="${message}" class=" col-6 shadow p-3 mb-5 bg-body-tertiary rounded border border-2" style="color: red"></p>
+            </div>
+
             <div class="col-12 mb-5 d-flex align-items-center">
                 <h2 class="col-5">Tất cả sản phẩm</h2>
 
                 <div class="col-7 d-flex justify-content-end align-items-center">
-                    <form action="/products/sort" class="col-5 me-3 d-flex justify-content-end align-items-center">
+                    <form action="/products/sort" class="col-5 me-3 d-flex justify-content-end align-items-center" method="post">
                         <a href="/products" class="btn btn-danger">Xóa&nbspbộ&nbsplọc</a>&nbsp
                         <button type="submit" class="btn btn-outline-success">Lọc</button>&nbsp
                         <select class="form-select" aria-label="Default select example" name="sort">
@@ -226,7 +229,7 @@
                             <option value="3">Self-help</option>
                         </select>
                     </form>
-                    <form class="d-flex col-5" role="search">
+                    <form class="d-flex col-5" role="search" action="/products/search" method="post">
                         <input class="form-control me-2" type="search" placeholder="Nhập để tìm" aria-label="Search"
                                name="search">
                         <button class="btn btn-outline-secondary" type="submit">Tìm&nbspkiếm</button>
@@ -257,7 +260,7 @@
                                    th:text="${book.nameBook}"></a>
                             </h5>
 
-                            <p class="product-p" th:text="${book.describeBook}"></p>
+                            <p class="product-p" th:text="${book.category.name}"></p>
                         </div>
                         <!--                        price below-->
                         <div style="display: none">
@@ -303,6 +306,19 @@
 <script src="/js/jQuery.headroom.js"></script>
 <script src="/js/slick.min.js"></script>
 <script src="/js/custom.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        let successMessage = document.getElementById("message");
+
+        // Ẩn thông báo thành công sau 10 giây
+        if (successMessage) {
+            setTimeout(function() {
+                successMessage.style.display = "none";
+            }, 5000); // 10 giây
+        }
+    });
+</script>
 
 </body>
 </html>

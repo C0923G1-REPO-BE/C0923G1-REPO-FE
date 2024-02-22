@@ -12,5 +12,11 @@ public interface IKhanhBookService {
 
     Book findBookById(Integer id);
 
-    void addOrder(List<CartBook> cartBookList, String address);
+    void addOrder(List<CartBook> cartBookList, String address, Boolean permitted);
+
+    Page<Book> findAllBookByName(String search, Pageable bookPageable);
+
+    List<Book> findAllList();
+
+    Page<Book> findAllBookByCategory(Integer sort, Pageable bookPageable);
 }
