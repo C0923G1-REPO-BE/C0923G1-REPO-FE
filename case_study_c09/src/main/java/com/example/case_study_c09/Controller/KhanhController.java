@@ -9,9 +9,11 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -47,7 +49,7 @@ public class KhanhController {
     }
 
     @GetMapping("/add-to-cart/{id}")
-    public String addToCart(@PathVariable("id") Integer id, @ModelAttribute("cart") Map<Book, Integer> cartMap) {
+    public String addToCart(@PathVariable("id") Integer id, @ModelAttribute("cart") Map<Book, Integer> cartMap, RedirectAttributes redirectAttributes) {
         Book bookById = iKhanhBookService.findBookById(id);
         Integer newQuantity = null;
         int count = 0;
@@ -68,12 +70,23 @@ public class KhanhController {
         for (Book book : cartMap.keySet()) {
             System.out.println(book + "sl " + cartMap.get(book));
         }
+        redirectAttributes.addFlashAttribute("message", "Đặt hàng thành công");
         return "redirect:/products";
     }
 
     @PostMapping("/search")
-    public String search(){
-        String k = "k";
+    public String search(@RequestParam("search")String search, Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page){
+        Pageable bookPageable = PageRequest.of(page, 8);
+        Page<Book> bookPage = this.iKhanhBookService.findAllBookByName(search, bookPageable);
+        model.addAttribute("bookList", bookPage);
+        return "products";
+    }
+
+    @PostMapping("/sort")
+    public String sort(@RequestParam("sort")Integer sort, Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page){
+        Pageable bookPageable = PageRequest.of(page, 8);
+        Page<Book> bookPage = this.iKhanhBookService.findAllBookByCategory(sort, bookPageable);
+        model.addAttribute("bookList", bookPage);
         return "products";
     }
 }
