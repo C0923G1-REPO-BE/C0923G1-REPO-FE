@@ -31,10 +31,25 @@ public class KhanhCartResController {
             cartBookList.add(bookData[i]);
         }
 
-        iKhanhBookService.addOrder(cartBookList, address);
-        //Xóa giỏ hàng session
-        if(!cartMap.isEmpty()){
-            cartMap.clear();
+        //Neu thanh cong, xoa gio hang
+        Boolean permitted = true;
+        List<Book> books = iKhanhBookService.findAllList();
+        for (Book book: books){
+            for (CartBook cartBook: cartBookList){
+                if(cartBook.getIdBook().equals(String.valueOf(book.getId())) && Integer.valueOf(cartBook.getValue())> book.getQuantity()
+                || cartBook.getIdBook().equals(String.valueOf(book.getId())) && Integer.valueOf(cartBook.getValue()) < 1){
+                    permitted = false;
+                    break;
+                }
+            }
+        }
+        iKhanhBookService.addOrder(cartBookList, address, permitted);
+
+        if (permitted){
+            //Xóa giỏ hàng session
+            if(!cartMap.isEmpty()){
+                cartMap.clear();
+            }
         }
     }
 
@@ -44,8 +59,11 @@ public class KhanhCartResController {
         for (CartBook cartBook : bookData) {
             for (Book book : cartMap.keySet()) {
                 if (book.getId().equals(Integer.valueOf(cartBook.getIdBook()))) {
-                    cartMap.put(book, Integer.valueOf(cartBook.getValue()));
-                    break;
+                    if(Integer.valueOf(cartBook.getValue()) <= book.getQuantity() && Integer.valueOf(cartBook.getValue()) > 0){
+                        cartMap.put(book, Integer.valueOf(cartBook.getValue()));
+                    }else {
+                        cartMap.put(book, 1);
+                    }
                 }
             }
         }

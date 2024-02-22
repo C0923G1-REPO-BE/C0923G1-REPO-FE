@@ -60,7 +60,7 @@
                     <div>
                         <h2 class="product-title mb-0" th:text="${book.nameBook}"></h2>
 
-                        <p class="product-p">Top</p>
+                        <p class="product-p" th:text="${book.category.name}"></p>
                     </div>
                     <!--                    gia tien-->
                     <small class="product-price text-muted ms-auto mt-auto mb-5" th:text="${#numbers.formatDecimal(book.price, 0, 'COMMA', 0, 'POINT')} + ' vnđ'"></small>
