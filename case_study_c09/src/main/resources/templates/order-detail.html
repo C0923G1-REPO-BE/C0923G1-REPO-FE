@@ -20,74 +20,76 @@
 
 </head>
 <body>
-<header class="header">
-    <div>
-        <section class="preloader">
-            <div class="spinner">
-                <span class="sk-inner-circle"></span>
-            </div>
-        </section>
-        <nav class="navbar navbar-expand-lg">
-            <div class="container">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+<!--<header class="header">-->
+<!--    <div>-->
+<!--        <section class="preloader">-->
+<!--            <div class="spinner">-->
+<!--                <span class="sk-inner-circle"></span>-->
+<!--            </div>-->
+<!--        </section>-->
+<!--        <nav class="navbar navbar-expand-lg">-->
+<!--            <div class="container">-->
+<!--                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"-->
+<!--                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--                    <span class="navbar-toggler-icon"></span>-->
+<!--                </button>-->
 
-                <a class="navbar-brand" th:href="@{/}">
-                    <strong><span>Little</span> Book</strong>
-                </a>
+<!--                <a class="navbar-brand" th:href="@{/}">-->
+<!--                    <strong><span>Little</span> Book</strong>-->
+<!--                </a>-->
 
-                <div class="d-lg-none">
-                    <a href="sign-in.html" class="bi-person custom-icon me-3"></a>
+<!--                <div class="d-lg-none">-->
+<!--                    <a href="sign-in.html" class="bi-person custom-icon me-3"></a>-->
 
-                    <a href="product-detail.html" class="bi-bag custom-icon"></a>
-                </div>
+<!--                    <a href="product-detail.html" class="bi-bag custom-icon"></a>-->
+<!--                </div>-->
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/}">Trang chủ</a>
-                        </li>
+<!--                <div class="collapse navbar-collapse" id="navbarNav">-->
+<!--                    <ul class="navbar-nav mx-auto">-->
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/}">Trang chủ</a>-->
+<!--                        </li>-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/about}">Tiểu sử</a>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/about}">Tiểu sử</a>-->
+<!--                        </li>-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/product}">Sản phẩm</a>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/product}">Sản phẩm</a>-->
+<!--                        </li>-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/faq}">Hỏi đáp</a>
-                        </li>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/faq}">Hỏi đáp</a>-->
+<!--                        </li>-->
 
-                        <li class="nav-item">
-                            <a class="nav-link" th:href="@{/contact}">Liên hệ</a>
-                        </li>
-                    </ul>
-                    <div>
-                        <div class="dropdown">
-                            <button style="background-color: white" class="btn btn-secondary dropdown-toggle"
-                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
-                                    aria-expanded="false">
-                                <a class="bi-person custom-icon me-3">Tôi</a>
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" th:href="@{/profile/{email}(email=${email})}">Hồ sơ của
-                                    tôi</a></li>
-                                <li><a class="dropdown-item" th:href="@{/cart}">Giỏ hàng</a></li>
-                                <li><a class="dropdown-item" th:href="@{/order/{email}(email=${email})}">Đơn hàng của
-                                    tôi</a></li>
-                                <li><a class="dropdown-item" th:href="@{/}">Đăng xuất</a></li>
-                            </ul>
-                        </div>
-                    </div>
+<!--                        <li class="nav-item">-->
+<!--                            <a class="nav-link" th:href="@{/contact}">Liên hệ</a>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                    <div>-->
+<!--                        <div class="dropdown">-->
+<!--                            <button style="background-color: white" class="btn btn-secondary dropdown-toggle"-->
+<!--                                    type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"-->
+<!--                                    aria-expanded="false">-->
+<!--                                <a class="bi-person custom-icon me-3">Tôi</a>-->
+<!--                            </button>-->
+<!--                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">-->
+<!--                                <li><a class="dropdown-item" th:href="@{/profile/{email}(email=${email})}">Hồ sơ của-->
+<!--                                    tôi</a></li>-->
+<!--                                <li><a class="dropdown-item" th:href="@{/cart}">Giỏ hàng</a></li>-->
+<!--                                <li><a class="dropdown-item" th:href="@{/order/{email}(email=${email})}">Đơn hàng của-->
+<!--                                    tôi</a></li>-->
+<!--                                <li><a class="dropdown-item" th:href="@{/}">Đăng xuất</a></li>-->
+<!--                            </ul>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                </div>
-            </div>
-        </nav>
-    </div>
+<!--                </div>-->
+<!--            </div>-->
+<!--        </nav>-->
+<!--    </div>-->
+<!--</header>-->
+<header th:replace="/layout-top-had-login::header" class="header">
 </header>
 <div style="margin: 100px">
     <h3>CHI TIẾT ĐƠN HÀNG</h3>
@@ -145,7 +147,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    Bạn muốn xóa đơn hàng không?
+                    Bạn muốn hủy đơn hàng không? Đơn hàng chỉ được hủy khi đang trong trạng thái "Chờ xác nhận"!!!
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Không</button>

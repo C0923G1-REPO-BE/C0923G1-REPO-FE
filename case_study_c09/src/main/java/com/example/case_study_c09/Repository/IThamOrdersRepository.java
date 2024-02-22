@@ -24,7 +24,7 @@ public interface IThamOrdersRepository extends JpaRepository<Order,Integer> {
     void cancelOrder( @Param("param") int idOrder);
 
     @Query(nativeQuery = true, value = "select * from orders where is_delete = 0")
-    Set<Order> findByIdCheckDel(@Param("param") int idOrder);
+    Set<Order> findByIdCheckDel();
 
     List<Order> findByCode(String code);
 
