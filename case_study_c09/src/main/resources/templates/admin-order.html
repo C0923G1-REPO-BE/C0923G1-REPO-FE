@@ -37,7 +37,7 @@
             <main class="main-content">
                 <h2 class="h2">Tất cả đơn hàng</h2>
 
-
+<!--                search-->
                 <div class="d-flex align-items-center" style="margin-bottom: 40px">
                     <form class="form-inline" th:action="@{/customer/search}" method="post">
                         <div class="input-group">
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="b1">
-                    <form action="/" method="post">
+<!--                    <form action="/" method="post">-->
                         <table class="table table-striped table-hover">
                             <thead style="font-size: 14px">
                             <tr>
@@ -74,21 +74,19 @@
                                 ></td>
                                 <td th:text="${order.getAddress()}"></td>
                                 <td>
-                                    <!--                            <select th:name="'status' + ${order.getId()}" th:id="${order.getId()}"-->
-                                    <!--                                    onchange="updateStatus()" class="option-status">-->
-                                    <!--                                <option value="Chờ xác nhận">Chờ xác nhận-->
-                                    <!--                                </option>-->
-                                    <!--                                <option value="Đang vận chuyển">Đang vận chuyển-->
-                                    <!--                                </option>-->
-                                    <!--                                <option value="Đã giao">Đã giao-->
-                                    <!--                                </option>-->
-                                    <!--                                <option th:value="${order.getStatus()}" selected disabled th:text="${order.getStatus()}">-->
-                                    <!--                                </option>-->
-                                    <!--                            </select>-->
-                                    <input th:value="${order.getStatus()}" type="hidden" id="input-stt">
-                                    <input th:id="${order.getId()}" onclick="updateStatus()"
-                                           title="Nhấn để chuyển đến trạng thái tiếp theo"
-                                           class="btn btn-outline-secondary" th:value="${order.getStatus()}">
+
+                                    <!--                                    //trạng thái-->
+
+<!--                                    <input th:id="${order.getId()}"-->
+<!--                                           title="Nhấn để chuyển đến trạng thái tiếp theo"-->
+<!--                                           class="btn btn-outline-secondary" th:value="${order.getStatus()}"-->
+<!--                                           type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"-->
+<!--                                    >-->
+                                    <button type="button" class="btn btn-outline-secondary"
+                                            th:attr="data-order-id=${order.getId()} , data-order-name=${order.getCode()}, data-order-status=${order.getStatus()} "
+                                            onclick="updateStatus(this.getAttribute('data-order-id'), this.getAttribute('data-order-name'), this.getAttribute('data-order-status'))"
+                                            data-bs-toggle="modal" data-bs-target="#exampleModal" th:text="${order.getStatus()}">
+                                    </button>
                                 </td>
                                 <td
                                         th:text="${#numbers.formatDecimal(order.totalPayment(), 0, 'COMMA', 0, 'POINT') + ' VND'}"></td>
@@ -101,7 +99,7 @@
 
                             </tbody>
                         </table>
-                    </form>
+<!--                    </form>-->
                 </div>
             </main>
         </div>
@@ -109,51 +107,50 @@
 
 </section>
 
-    <header th:replace="/layout-top::footer" class="footer">
-    </header>
+<header th:replace="/layout-top::footer" class="footer">
+</header>
 
-    <script>
-        function updateStatus() {
-            let orderElement = document.querySelectorAll(".status-order");
-            let orderStt = [];
-
-            console.log(orderElement);
-            orderElement.forEach(function (orderElement) {
-                let orderId = orderElement.getAttribute("data-orderid");
-                console.log("iddđ" + orderId);
-                let orderStatus = document.getElementById(orderId).value;
-                console.log(orderStatus);
-                if (orderStatus === "Chờ xác nhận") {
-                    document.getElementById(orderId).value = "Đang vận chuyển";
-                } else {
-                    document.getElementById(orderId).value = "Đã giao";
-                }
-                orderStt.push({orderId: orderId, orderStatus: orderStatus});
-            });
-
-            //Gửi Data
-            fetch('/api/order', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(orderStt)
-            })
-
-                .then(data => console.log(orderStt))
-                .catch(error => console.error('Error:', error));
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <form th:action="@{/update-order-admin}" method="post">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Xác nhận</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input hidden="hidden" id="id" name="id">
+                    <input hidden="hidden" id="status" name="status">
+                    <span>Bạn có muốn chuyển đơn hàng mã</span>
+                    <span id="delName"></span>
+                    <span> không?</span>
+                    <span> Khi bạn chuyển trạng thái sẽ không thể quay lại trạng thái trước, bạn có chắc muốn đổi không?</span>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Huỷ</button>
+                    <button type="submit" class="btn btn-primary">Xoá</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
 
 
-        }
-    </script>
-    <script>
+<script>
+    function updateStatus(id, code,status) {
+        document.getElementById("delName").innerText = code;
+        document.getElementById("id").value = id;
+        document.getElementById("status").value = status;
+    }
 
-    </script>
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/bootstrap.bundle.min.js"></script>
-    <script src="/js/Headroom.js"></script>
-    <script src="/js/jQuery.headroom.js"></script>
-    <script src="/js/slick.min.js"></script>
-    <script src="/js/custom.js"></script>
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/bootstrap.bundle.min.js"></script>
+<script src="/js/Headroom.js"></script>
+<script src="/js/jQuery.headroom.js"></script>
+<script src="/js/slick.min.js"></script>
+<script src="/js/custom.js"></script>
 </body>
 </html>

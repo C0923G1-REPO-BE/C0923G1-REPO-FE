@@ -33,8 +33,8 @@ public class ThamOrdersService implements IThamOrdersService{
     }
 
     @Override
-    public Set<Order> findByIdCheckDel(int idOrder) {
-        return ordersRepository.findByIdCheckDel(idOrder);
+    public Set<Order> findByIdCheckDel() {
+        return ordersRepository.findByIdCheckDel();
     }
 
     @Override

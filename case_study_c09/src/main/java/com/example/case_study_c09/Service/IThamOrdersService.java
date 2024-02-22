@@ -16,7 +16,7 @@ public interface IThamOrdersService {
 
     void cancelOrder(int idOrder);
 
-    Set<Order> findByIdCheckDel(int idOrder);
+    Set<Order> findByIdCheckDel();
 
     Page<Order> findAll(Pageable pageable);
 

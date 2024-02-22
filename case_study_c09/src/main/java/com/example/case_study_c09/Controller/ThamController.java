@@ -103,7 +103,7 @@ public class ThamController {
     }
 
     @GetMapping("/cancel-order/{idOrder}")
-    public String cancelOrder(@PathVariable ("idOrder") int idOrder, Model model){
+    public String cancelOrder(@PathVariable ("idOrder") int idOrder, RedirectAttributes attributes){
         Order order = ordersService.findById(idOrder);
         Account account = order.getAccount();
         String email = account.getUsername();
@@ -111,10 +111,13 @@ public class ThamController {
 //        nếu đơn hàng đang chờ xác nhận thì được hủy, k thì k hủy đc
         if(order.getStatus().equals("Chờ xác nhận")){
             ordersService.cancelOrder(idOrder);
-            Set<Order> orders = ordersService.findByIdCheckDel(idOrder) ;
-            model.addAttribute("orderSet",orders);
+            Set<Order> orders = ordersService.findByIdCheckDel() ;
+            attributes.addFlashAttribute("orderSet",orders);
+            attributes.addFlashAttribute("message","Hủy đơn hàng thành công");
+
         }else {
             System.out.println("Không thể hủy đơn");
+            attributes.addFlashAttribute("message","Không thể hủy đơn hàng");
         }
         return "redirect:/order/"+email;
     }
@@ -123,8 +126,8 @@ public class ThamController {
     @GetMapping("/admin-order")
     public String adminOrder(Model model, @RequestParam(value = "page", required = false, defaultValue = "0") Integer page){
         Pageable pageable = PageRequest.of(page, 11);
-        Page<Order> orderPage = ordersService.findAll(pageable);
-        model.addAttribute("orderPage", orderPage);
+        Set<Order> orders = ordersService.findByIdCheckDel() ;
+        model.addAttribute("orderPage", orders);
         return "admin-order";
     }
     @PostMapping("/customer/search")
@@ -143,12 +146,24 @@ public class ThamController {
     }
 
     @GetMapping("/cancel-order-admin/{idOrder}")
-    public String cancelOrderAdmin(@PathVariable ("idOrder") int idOrder, Model model){
-        Order order = ordersService.findById(idOrder);
+    public String cancelOrderAdmin(@PathVariable ("idOrder") int idOrder, RedirectAttributes attributes){
 //        Admin có quyền hủy hết tất cả đơn
             ordersService.cancelOrder(idOrder);
-            Set<Order> orders = ordersService.findByIdCheckDel(idOrder) ;
-            model.addAttribute("orderSet",orders);
+            Set<Order> orders = ordersService.findByIdCheckDel() ;
+            attributes.addFlashAttribute("orderSet",orders);
+        return "redirect:/admin-order";
+    }
+
+    @PostMapping("/update-order-admin")
+    public String updateOrderAdmin(@RequestParam ("id") int id,
+                                   @RequestParam ("status") String status){
+        Order order = ordersService.findById(id);
+        if(status.equals("Chờ xác nhận")){
+            order.setStatus("Đang vận chuyển");
+        }else {
+            order.setStatus("Đã giao");
+        }
+        ordersService.save(order);
         return "redirect:/admin-order";
     }
 }
